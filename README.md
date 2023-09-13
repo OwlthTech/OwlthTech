@@ -1,7 +1,7 @@
 # 🚀 Owlth.Tech 🚀
 
 <img src="/src/assets/images/owlthtech-logo.png" align="right"
-     alt="OwlthTech" width="350" height="100">
+     alt="OwlthTech" width="400" height="100">
 
 🌟 _*Owlth* & *Tech* Blazzing Fast Website_. 🌟
 
