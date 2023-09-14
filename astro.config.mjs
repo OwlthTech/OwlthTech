@@ -11,6 +11,9 @@ import compress from 'astro-compress';
 import icon from 'astro-icon';
 import tasks from './src/utils/tasks';
 
+// import serviceWorker from 'astro-service-worker';
+// import vercel from '@astrojs/vercel/serverless';
+
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 
 import { ANALYTICS, SITE } from './src/utils/config.ts';
@@ -30,8 +33,9 @@ export default defineConfig({
   trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
   output: 'static',
-
+  // adapter: vercel(),
   integrations: [
+    // serviceWorker(),
     tailwind({
       applyBaseStyles: false,
     }),
