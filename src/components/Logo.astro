@@ -1,8 +1,36 @@
 ---
 // import { SITE } from '~/utils/config';
-import logoImage from '/src/assets/images/owlthtech-logo.png';
+import Image from '~/components/common/Image.astro';
+
+
+export interface Props {
+  src?: string | any; // TODO: find HTMLElementProps
+  image?: string | any;
+  alt?: any;
+}
+
+const {
+  image = await Astro.slots.render('image'),
+} = Astro.props;
+
 ---
 
-<!-- <span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"> -->
-  <img class="rtl:ml-0 rtl:mr-2 whitespace-nowrap w-36" src={logoImage.src}/>
-<!-- </span> -->
+{
+  image && (
+    <div class="rtl:ml-0 rtl:mr-2 whitespace-nowrap w-36">
+        {typeof image === 'string' ? (
+        <Fragment set:html={image} />
+        ) : (
+          <Image
+            class="text-left"
+            widths={[150]}
+            sizes="(max-width: 2039px) 150px"
+            loading="eager"
+            width={150}
+            height={50}
+            {...image}
+          />
+        )}
+    </div>
+  )
+}
