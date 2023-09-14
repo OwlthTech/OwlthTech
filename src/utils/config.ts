@@ -87,7 +87,7 @@ const getSite = () => {
     site: undefined,
     base: '/',
     trailingSlash: false,
-    logoImage: '/src/assets/images/owlthtech-logo.png',
+    logoImage: undefined,
     googleSiteVerificationId: '',
   };
 
