@@ -22,6 +22,7 @@
     "astro": "^3.0.12",
     "astro-icon": "^1.0.0-next.2",
     "astro-service-worker": "^0.1.2",
+    "jquery": "^3.7.1",
     "limax": "4.1.0",
     "lodash.merge": "^4.6.2",
     "unpic": "^3.10.0"

@@ -18,6 +18,12 @@
   .text-muted {
     color: var(--aw-color-text-muted);
   }
+  .marquee {
+    overflow: hidden;
+    }
+    .marquee img {
+        @apply space-x-5;
+    }
 }
 
 @layer components {

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Client 1",
+        "logo": "https://dummyimage.com/300x150/d5d5d5/000.jpg&text=client1"
+    },
+    {
+        "name": "Client 2",
+        "logo": "https://dummyimage.com/300x150/d5d5d5/000.jpg&text=client2"
+    },
+    {
+        "name": "Client 3",
+        "logo": "https://dummyimage.com/300x150/d5d5d5/000.jpg&text=client3"
+    },
+    {
+        "name": "Client 4",
+        "logo": "https://dummyimage.com/300x150/d5d5d5/000.jpg&text=client4"
+    },
+    {
+        "name": "Client 5",
+        "logo": "https://dummyimage.com/300x150/d5d5d5/000.jpg&text=client5"
+    }
+]
