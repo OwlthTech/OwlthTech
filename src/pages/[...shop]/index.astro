@@ -1,0 +1,43 @@
+---
+import merge from 'lodash.merge';
+import type { ImageMetadata } from 'astro';
+import Layout from '~/layouts/PageLayout.astro';
+import SingleProduct from '~/components/shop/SinglePost.astro';
+import ToBlogLink from '~/components/shop/ToBlogLink.astro';
+
+import { getCanonical, getPermalink } from '~/utils/permalinks';
+import { getStaticPathsShopProduct, shopProductRobots } from '~/utils/product';
+import { findImage } from '~/utils/images';
+
+export const prerender = true;
+
+export async function getStaticPaths () {
+  return await getStaticPathsShopProduct();
+}
+
+const { post } = Astro.props;
+
+const url = getCanonical(getPermalink(post.permalink, 'post'));
+const image = (await findImage(post.image)) as ImageMetadata | undefined;
+
+const metadata = merge(
+  {
+    title: post.title,
+    description: post.excerpt,
+    robots: {
+      index: shopProductRobots?.index,
+      follow: shopProductRobots?.follow,
+    },
+    openGraph: {
+      type: 'article',
+      ...(image ? { images: [{ url: image, width: image?.width, height: image?.height }] } : {}),
+    },
+  },
+  { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
+);
+---
+
+<Layout metadata={metadata}>
+  <SingleProduct post={{ ...post, image: image }} url={url} />
+  <ToBlogLink />
+</Layout>
