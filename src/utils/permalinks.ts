@@ -1,6 +1,7 @@
 import slugify from 'limax';
 
-import { SITE, APP_BLOG } from '~/utils/config';
+
+import { SITE, APP_BLOG, APP_SHOP } from '~/utils/config';
 
 import { trim } from '~/utils/utils';
 
@@ -22,10 +23,13 @@ export const cleanSlug = (text = '') =>
     .join('/');
 
 export const BLOG_BASE = cleanSlug(APP_BLOG?.list?.pathname);
+export const SHOP_BASE = cleanSlug(APP_SHOP?.list?.pathname);
+
 export const CATEGORY_BASE = cleanSlug(APP_BLOG?.category?.pathname);
 export const TAG_BASE = cleanSlug(APP_BLOG?.tag?.pathname) || 'tag';
 
 export const POST_PERMALINK_PATTERN = trimSlash(APP_BLOG?.post?.permalink || `${BLOG_BASE}/%slug%`);
+export const PRODUCT_PERMALINK_PATTERN = trimSlash(APP_SHOP?.post?.permalink || `${SHOP_BASE}/%slug%`);
 
 /** */
 export const getCanonical = (path = ''): string | URL => {
@@ -69,6 +73,8 @@ export const getHomePermalink = (): string => getPermalink('/');
 
 /** */
 export const getBlogPermalink = (): string => getPermalink(BLOG_BASE);
+
+export const getShopPermalink = (): string => getPermalink(SHOP_BASE);
 
 /** */
 export const getAsset = (path: string): string =>

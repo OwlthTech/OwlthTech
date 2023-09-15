@@ -1,0 +1,34 @@
+---
+import { shopTagRobots, getStaticPathsShopTag } from '~/utils/product';
+
+import Layout from '~/layouts/PageLayout.astro';
+import ProductList from '~/components/shop/List.astro';
+import Headline from '~/components/shop/Headline.astro';
+import Pagination from '~/components/shop/Pagination.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths ({ paginate }) {
+  return await getStaticPathsShopTag({ paginate });
+}
+
+const { page, tag } = Astro.props;
+
+const currentPage = page.currentPage ?? 1;
+
+const metadata = {
+  title: `Posts by tag '${tag}'${currentPage > 1 ? ` — Page ${currentPage} ` : ''}`,
+  robots: {
+    index: shopTagRobots?.index,
+    follow: shopTagRobots?.follow,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 md:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <Headline>Tag: {tag}</Headline>
+    <ProductList posts={page.data} />
+    <Pagination prevUrl={page.url.prev} nextUrl={page.url.next} />
+  </section>
+</Layout>

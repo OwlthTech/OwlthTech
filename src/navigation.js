@@ -1,4 +1,4 @@
-import { getPermalink, getBlogPermalink, getAsset, getHomePermalink } from './utils/permalinks';
+import { getPermalink, getBlogPermalink, getAsset, getHomePermalink, getShopPermalink } from './utils/permalinks';
 
 export const headerData = {
   links: [
@@ -43,6 +43,10 @@ export const headerData = {
     {
       text: 'Blog',
       href: getBlogPermalink()
+    },
+    {
+      text: 'Shop',
+      href: getShopPermalink()
     }
   ],
   actions: [{ text: 'Contact Now', href: getPermalink('/contact') }],

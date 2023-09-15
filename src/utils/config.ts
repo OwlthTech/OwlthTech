@@ -59,6 +59,42 @@ export interface AppBlogConfig {
     };
   };
 }
+export interface AppShopConfig {
+  isEnabled: boolean;
+  postsPerPage: number;
+  post: {
+    isEnabled: boolean;
+    permalink: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+  list: {
+    isEnabled: boolean;
+    pathname: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+  category: {
+    isEnabled: boolean;
+    pathname: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+  tag: {
+    isEnabled: boolean;
+    pathname: string;
+    robots: {
+      index: boolean;
+      follow: boolean;
+    };
+  };
+}
 export interface AnalyticsConfig {
   vendors: {
     googleAnalytics: {
@@ -74,6 +110,7 @@ const config = yaml.load(fs.readFileSync('src/config.yaml', 'utf8')) as {
   i18n?: I18NConfig;
   apps?: {
     blog?: AppBlogConfig;
+    shop?: AppShopConfig;
   };
   ui?: unknown;
   analytics?: unknown;
@@ -136,7 +173,7 @@ const getI18N = () => {
 const getAppBlog = () => {
   const _default = {
     isEnabled: false,
-    postsPerPage: 6,
+    postsPerPage: 3,
     post: {
       isEnabled: true,
       permalink: '/blog/%slug%',
@@ -174,6 +211,47 @@ const getAppBlog = () => {
   return merge({}, _default, config?.apps?.blog ?? {}) as AppBlogConfig;
 };
 
+const getAppShop = () => {
+  const _default = {
+    isEnabled: true,
+    postsPerPage: 6,
+    post: {
+      isEnabled: true,
+      permalink: '/shop/%slug%',
+      robots: {
+        index: true,
+        follow: true,
+      },
+    },
+    list: {
+      isEnabled: true,
+      pathname: 'shop',
+      robots: {
+        index: true,
+        follow: true,
+      },
+    },
+    category: {
+      isEnabled: true,
+      pathname: '/shop/category',
+      robots: {
+        index: true,
+        follow: true,
+      },
+    },
+    tag: {
+      isEnabled: true,
+      pathname: '/shop/tag',
+      robots: {
+        index: false,
+        follow: true,
+      },
+    },
+  };
+
+  return merge({}, _default, config?.apps?.shop ?? {}) as AppShopConfig;
+};
+
 const getUI = () => {
   const _default = {
     theme: 'system',
@@ -201,5 +279,6 @@ export const SITE = getSite();
 export const I18N = getI18N();
 export const METADATA = getMetadata();
 export const APP_BLOG = getAppBlog();
+export const APP_SHOP = getAppShop();
 export const UI = getUI();
 export const ANALYTICS = getAnalytics();
